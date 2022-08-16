@@ -17,12 +17,13 @@ export class Usuario {
 
 
     get imagenUrl(){
-        //http://localhost:3000/api/upload/medicos/no-image
         
-        if ( this.img?.includes('http')){
+
+        if ( !this.img ){
+            return `${base_url}/upload/usuarios/no-image`; 
+        } else if ( this.img?.includes('http')){
             return this.img;
-        }
-        if ( this.img ){
+        } else if ( this.img ){
             return `${base_url}/upload/usuarios/${this.img}`;
         } else {
             return `${base_url}/upload/usuarios/no-image`;

@@ -11,6 +11,9 @@ import { AccountSettingsComponent } from './account-settings/account-settings.co
 import { PromisesComponent } from './promises/promises.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { UsuariosComponent } from './mantenimientos/usuarios/usuarios.component';
+import { HospitalesComponent } from './mantenimientos/hospitales/hospitales.component';
+import { MedicosComponent } from './mantenimientos/medicos/medicos.component';
 
 
 const routes: Routes = [
@@ -26,6 +29,11 @@ const routes: Routes = [
           { path: 'progress', component: ProgressComponent , data: { titulo: 'ProgressBar'}},
           { path: 'promises', component: PromisesComponent , data: { titulo: 'Promesas'}},
           { path: 'rxjs', component: RxjsComponent , data: { titulo: 'Rxjs'}},
+
+          // Mantenimientos
+          { path: 'usuarios', component: UsuariosComponent , data: { titulo: 'Perfil de usuario'}},
+          { path: 'hospitales', component: HospitalesComponent, data: { titulo: 'Perfil de hospital'}},
+          { path: 'medicos', component: MedicosComponent , data: { titulo: 'Perfil de medico'}},
         ]
       },
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario.model';
 import { UsuarioService } from '../../services/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,8 @@ export class HeaderComponent  {
 
   public imgUrl = '';
 
-  constructor(private usuarioService: UsuarioService) { 
+  constructor(private usuarioService: UsuarioService,
+              private router: Router) { 
 
     this.imgUrl = usuarioService.usuario.imagenUrl;
 
@@ -24,6 +26,17 @@ export class HeaderComponent  {
 
   logout() {
     this.usuarioService.logout();
+  }
+
+
+  buscar(termino: string){
+
+    if (termino.length === 0) {
+      this.router.navigateByUrl(`/dashboard`)
+    }
+
+    this.router.navigateByUrl(`/dashboard/busqueda/${termino}`);
+
   }
 
 }

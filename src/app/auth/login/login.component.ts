@@ -69,12 +69,13 @@ export class LoginComponent implements AfterViewInit {
           
           if ( this.loginForm.get('remember')?.value ){
             localStorage.setItem('email', this.loginForm.get('email')?.value);
-            // Navegar al dashboard
-        this.router.navigateByUrl('/dashboard')
+            this.router.navigateByUrl('/dashboard')
+
           } else {
             localStorage.removeItem('email')
           }
-
+            // Navegar al dashboard
+          
         }, (err) => {
           Swal.fire('Error', err.error.msg, 'error');
         })

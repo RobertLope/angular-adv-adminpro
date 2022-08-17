@@ -12,7 +12,6 @@ import { RegisterForm } from '../interfaces/register-form.interface';
 import { LoginForm } from '../interfaces/login-form';
 import { Usuario } from '../models/usuario.model';
 import { CargarUsuario } from '../interfaces/cargar-usuarios.interface';
-import Swal from 'sweetalert2';
 
 
 declare const google: any;
@@ -40,6 +39,10 @@ export class UsuarioService {
     return this.usuario.uid || '';
   }
 
+  get role(): 'ADMIN_ROLE' | 'USER_ROLE' {
+    return this.usuario.role;
+  }
+
   get headers() {
     return {
      headers: {
@@ -50,6 +53,7 @@ export class UsuarioService {
 
   logout(){
     localStorage.removeItem('token');
+    localStorage.removeItem('menu');
 
     this.router.navigateByUrl('/login');
 
@@ -68,8 +72,7 @@ export class UsuarioService {
     }).pipe(
       map( (resp: any) => {
         const { nombre, email, role, google, img = '', uid} = resp.user;   
-        this.usuario = new Usuario(nombre, email, '', img, google, role, uid);
-        localStorage.setItem('token', resp.token);
+        this.usuario = new Usuario(nombre, email, '', role,img, google, uid);
         return true;
       }),
       catchError( error =>  of(false))
@@ -85,7 +88,7 @@ export class UsuarioService {
      return this.http.post(`${ base_url }/usuarios`,formData)
                     .pipe(
                       tap( (resp: any) => {
-                        localStorage.setItem('token', resp.token )
+                        this.guardarLocalStorage(resp.token, resp.menu);
                       })
                     );
 
@@ -110,7 +113,7 @@ export class UsuarioService {
     return this.http.post(`${ base_url }/login`,formData)
                   .pipe(
                     tap( (resp: any) => {
-                      localStorage.setItem('token', resp.token )
+                      this.guardarLocalStorage(resp.token, resp.menu);
                     })
                   );
 
@@ -123,9 +126,18 @@ export class UsuarioService {
                    .pipe(
                     tap( (resp: any) => {
                       //console.log(resp)
-                      localStorage.setItem('token', resp.token )
+                      this.guardarLocalStorage(resp.token, resp.menu);
                     })
                   );
+ }
+
+ guardarLocalStorage(token: string, menu: any){
+
+  console.log(menu)
+        localStorage.setItem('token', token );
+       
+        console.log('Guardando en local storage')
+        localStorage.setItem('menu', JSON.stringify(menu));
  }
 
 
@@ -139,7 +151,7 @@ export class UsuarioService {
           .pipe(
             map(resp => {
               const usuarios = resp.usuarios.map( 
-                user => new Usuario(user.nombre, user.email, '', user.img, user.google, user.role, user.uid));
+                user => new Usuario(user.nombre, user.email, '', user.role, user.img, user.google,  user.uid));
 
               return {
                 total: resp.total,

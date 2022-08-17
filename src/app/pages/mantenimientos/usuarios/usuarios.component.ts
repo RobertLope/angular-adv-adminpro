@@ -32,10 +32,9 @@ export class UsuariosComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.imgSubs.unsubscribe();
-  }
-               
 
 
+  }       
 
   ngOnInit(): void {
     
@@ -83,7 +82,7 @@ export class UsuariosComponent implements OnInit, OnDestroy {
     }
 
     this.busquedaService.buscar('usuarios', termino)
-        .subscribe (resulatos=> {
+        .subscribe ((resulatos: any)=> {
           this.usuarios = resulatos;
         });
         return this.usuarios;

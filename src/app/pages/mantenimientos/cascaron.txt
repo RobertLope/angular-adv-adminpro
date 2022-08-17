@@ -5,7 +5,7 @@
 
             <input type="text"
                    class="form-control"
-                   placeholder="Buscar usuario...">
+                   placeholder="Buscar hospital...">
 
         </div>
       </div>
@@ -29,17 +29,14 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Usuarios</h4>
-                <h6 class="card-subtitle">Usuarios registrados en la aplicacion</h6>
+                <h4 class="card-title">Hospital</h4>
+                <h6 class="card-subtitle">Hospitales registrados en la aplicacion</h6>
                 <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>Avatar</th>
-                                <th>Correo</th>
+                                <th>Foto</th>
                                 <th>Nombre</th>
-                                <th>Rol</th>
-                                <th>Auth</th>
                                 <th class="text-nowrap">Acciones</th>
                             </tr>
                         </thead>
@@ -47,18 +44,9 @@
                             <tr>
                                 <td>Tantas earum numeris</td>
                                 <td>Tantas earum numeris</td>
-                                <td>Tantas earum numeris</td>
-                                <td>Tantas earum numeris</td>
-                                <td>Tantas earum numeris</td>
-                                <td>Tantas earum numeris</td>
 
-                                <td>
-                                    <div class="progress progress-xs margin-vertical-10 ">
-                                        <div class="progress-bar bg-inverse" style="width: 50%; height:6px;"></div>
-                                    </div>
-                                </td>
-                                <td>July 11, 2015</td>
-                                <td class="text-nowrap">
+
+                                <td class="text-nowrap text-center">
                                     <a href="#" data-toggle="tooltip" data-original-title="Editar"> <i class="fa fa-pencil text-inverse m-r-10"></i> </a>
                                     <a href="#" data-toggle="tooltip" data-original-title="Cerrar"> <i class="fa fa-close text-danger"></i> </a>
                                 </td>
